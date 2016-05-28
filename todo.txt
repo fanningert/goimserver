@@ -1,0 +1,15 @@
+- package build management - Glide - https://github.com/Masterminds/glide
+- Config file (TOML) - https://github.com/pelletier/go-toml
+- Go Relational Persistence - GORP - https://github.com/go-gorp/gorp
+
+- file structure
+
+- /etc/goimserver/config.ini
+- /usr/share/GoIMServer
+- /var/lib/goimserver/
+  - filestorage
+  - ...
+- /tmp/goimserver/
+  - cache
+  - session
+  - ...
