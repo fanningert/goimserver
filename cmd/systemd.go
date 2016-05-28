@@ -1,7 +1,10 @@
 package cmd
 
+// https://github.com/coreos/go-systemd
+
 import (
 	"github.com/codegangsta/cli"
+    //"github.com/coreos/go-systemd"
 )
 
 var CmdSystemd = cli.Command{

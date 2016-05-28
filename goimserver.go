@@ -5,10 +5,11 @@ package main
 import (
 	"os"
 	"runtime"
-
 	"github.com/codegangsta/cli"
 	
-	"github.com/fanningert/goimserver/cmd"
+	"./cmd"
+	//"./modules"
+	"./modules/setting"
 )
 
 const APP_VER = "0.0.1.0001"
