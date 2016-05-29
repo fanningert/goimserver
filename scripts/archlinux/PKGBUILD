@@ -1,0 +1,75 @@
+pkgname=goimserver-git
+_pkgname=goimserver
+_branch=master
+pkgrel=1
+epoch=1
+pkgver=3.56b50a6
+pkgdesc=""
+arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+url=""
+license=('MIT')
+provides=('goimserver')
+
+makedepends=('go>=1.4' 'git>=1.7.1' 'patch')
+
+options=('!strip' '!emptydirs')
+
+_gourl=github.com/fanningert/$_pkgname
+source=("$_pkgname::git+https://${_gourl}.git#branch=${_branch}")
+sha512sums=('SKIP')
+
+_goroot="/usr/lib/go"
+
+pkgver(){
+  cd "$srcdir/../$_pkgname"
+  echo $(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+}
+
+prepare() {
+  export GOROOT=/usr/lib/go
+  
+  msg2 "Prepare GO build enviroment"
+  rm -rf build
+  mkdir -p build/go
+  cd build/go
+
+  for f in "$GOROOT/"*; do
+    ln -s "$f"
+  done
+
+  rm pkg
+  mkdir pkg
+  cd pkg
+
+  for f in "$GOROOT/pkg/"*; do
+    ln -s "$f"
+  done
+
+  export GOROOT="$srcdir/build/go"
+  export GOPATH="$srcdir/build"
+  
+  mkdir -p "$GOPATH/src/github.com/fanningert"
+
+  mv "$srcdir/$_pkgname" $GOPATH/src/${_gourl}
+
+  # Glide
+  msg2 "Download dependencies via Glide"
+  cd $GOPATH/src/${_gourl}
+  glide install
+}
+
+build() {
+  cd $GOPATH/src/${_gourl}
+
+  msg2 "Build program"
+  go fix
+  go build -x
+}
+
+package() {
+  install -Dm0755 "$srcdir/build/src/${_gourl}/$_pkgname" "$pkgdir/usr/bin/$_pkgname"
+  
+  install -Dm0644 "$srcdir/build/src/${_gourl}/scripts/config.ini" "$pkgdir/etc/$_pkgname/config.ini"
+  install -Dm0644 "$srcdir/build/src/${_gourl}/scripts/systemd/goimserver.service" "$pkgdir/usr/lib/systemd/system/goimserver.service"
+  install -Dm0644 "$srcdir/build/src/${_gourl}/LICENSE" "$pkgdir/usr/share/licenses/$_pkgname"
+}

@@ -12,7 +12,13 @@ var CmdSystemd = cli.Command{
 	Usage: "Start GoIMServer in systemd mode",
 	Description: `GoIMServer in systemd mode has special systemd integration`,
 	Action: runSystemd,
-	Flags: []cli.Flag{},
+	Flags: []cli.Flag{
+		boolFlag("start", "Start service"),
+		boolFlag("stop", "Stop service"),
+		boolFlag("restart", "Restart service"),
+		stringFlag("profile", "config", "Configuration profile"),
+		stringFlag("config, c", "", "Custom configuration file path"),
+	},
 }
 
 func runSystemd(ctx *cli.Context) error {

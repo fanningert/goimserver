@@ -7,9 +7,9 @@ import (
 	"runtime"
 	"github.com/codegangsta/cli"
 	
-	"./cmd"
-	//"./modules"
-	"./modules/setting"
+	"github.com/fanningert/goimserver/cmd"
+	//"github.com/fanningert/goimserver/modules"
+	"github.com/fanningert/goimserver/modules/setting"
 )
 
 const APP_VER = "0.0.1.0001"

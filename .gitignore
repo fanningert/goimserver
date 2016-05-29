@@ -27,3 +27,8 @@ goimserver
 # Glide
 build
 vendor
+
+# Archlinux - Package
+scripts/archlinux/src
+scripts/archlinux/pkg
+scripts/archlinux/goimserver

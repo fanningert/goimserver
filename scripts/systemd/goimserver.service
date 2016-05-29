@@ -1,0 +1,14 @@
+[Unit]
+Description=GoImServer
+After=syslog.target
+After=network.target
+
+[Service]
+Type=forking
+PIDFile=/run/goimserver/goimserver.pid
+ExecStart=/usr/bin/goimserver systemd --start
+ExecStop=/usr/bin/goimserver systemd --stop
+Restart=/usr/bin/goimserver systemd --restart
+
+[Install]
+WantedBy=multi-user.target

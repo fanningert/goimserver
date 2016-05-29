@@ -36,7 +36,11 @@ cd $PROJECT_ROOT
 glide create
 glide install
 
-mv $PROJECT_ROOT/vendor/* $PROJECT_ROOT/build/src
+cd $PROJECT_ROOT/build/src
+for f in "$PROJECT_ROOT/vendor/"*; do
+  ln -s "$f"
+done
 
+cd $PROJECT_ROOT
 go build
 #glide up

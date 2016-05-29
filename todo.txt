@@ -5,7 +5,7 @@
 - file structure
 
 - /etc/goimserver/config.ini
-- /usr/share/GoIMServer
+- /usr/bin/goimserver
 - /var/lib/goimserver/
   - filestorage
   - ...

@@ -1,0 +1,1 @@
+d /run/goimserver 0755 goimserver xmpp -

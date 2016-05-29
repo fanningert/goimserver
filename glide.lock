@@ -1,6 +1,11 @@
-hash: 31176ce8f318377e57ecfa699034924578b7cf220cf98d994961338860f7f641
-updated: 2016-05-28T21:11:10.893887297+02:00
+hash: 8fa6aee6e08f41b18d04bc104631de82dc277badeb29c501064175bb7f41adba
+updated: 2016-05-29T10:05:43.65814689+02:00
 imports:
 - name: github.com/codegangsta/cli
   version: 9a18ffad6c548ca4d458d4c30a8aa4d181cf92fa
+- name: github.com/fanningert/goimserver
+  version: 56b50a6a98d1ce9c80437f955d4968fead59b924
+  subpackages:
+  - cmd
+  - modules/setting
 devImports: []
